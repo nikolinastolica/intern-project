@@ -44,26 +44,6 @@ export default function PostCard() {
     return Math.round(Math.random() * 20) - 10;
   }
 
-  function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
-
-    return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`,
-    };
-  }
-  const [modalStyle] = useState(getModalStyle);
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
 
 
@@ -89,14 +69,8 @@ export default function PostCard() {
 
                     <Typography>{photo.title}</Typography>
                   </CardActionArea>
-                  <Button onClick={handleOpen}>More info</Button>
-                  <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                  >
-                  </Modal>
+                
+                
                 </CardContent>
               </Card>
             </Grid>
