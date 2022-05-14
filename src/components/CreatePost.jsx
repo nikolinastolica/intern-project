@@ -38,7 +38,6 @@ const CreatePost = ({ service }) => {
   };
   const createHandler = async () => {
     setModalOpen(false);
-    window.location.reload(true);
     var tagsArray = tagValue.split(",");
 
     const data = {
@@ -47,7 +46,7 @@ const CreatePost = ({ service }) => {
       likes: Math.floor(Math.random() * 10),
       tags: tagsArray,
       owner: owner,
-      
+
     };
 
     const res = await axios.post(`https://dummyapi.io/data/v1/post/create`, { data }, { headers }).then(
