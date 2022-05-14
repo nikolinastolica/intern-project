@@ -1,23 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-  FormControlLabel,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Box, Button, Dialog, DialogContent, DialogTitle, TextField } from "@material-ui/core";
 
-import { useStyles } from "../styles/style";
+import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
+const useStyles = makeStyles((theme) => ({
+  formCenterBox: {
+    display: "flex",
+    flexDirection: "column",
+    height: "40%",
+    margin: "20px 20px",
+  },
+  inputContainer: {
+    marginBottom: "20px",
+  },
+  dialogHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  buttonCreate: {
+    display: "flex",
+    justifyContent: "flex-end",
+    marginRight: "50px",
+    marginBottom: "20px",
+  },
+}));
 
-const CreatePost = ({ service }) => {
+const CreatePost = () => {
   const classes = useStyles();
   const [modalOpen, setModalOpen] = useState(false);
   const headers = {
@@ -46,7 +56,6 @@ const CreatePost = ({ service }) => {
       likes: Math.floor(Math.random() * 10),
       tags: tagsArray,
       owner: owner,
-
     };
 
     const res = await axios.post(`https://dummyapi.io/data/v1/post/create`, { data }, { headers }).then(
@@ -65,7 +74,7 @@ const CreatePost = ({ service }) => {
 
   return (
     <Box>
-      <Button variant="outlined" className={classes.buttonStyle} onClick={handleClickOpen}>
+      <Button variant="outlined" color="purple" className={classes.buttonStyle} onClick={handleClickOpen}>
         Create Post
       </Button>
       <Dialog

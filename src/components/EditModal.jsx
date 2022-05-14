@@ -1,24 +1,34 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-  FormControlLabel,
-  Grid,
-  Typography,
-} from "@material-ui/core";
+import { Box, Button, Dialog, DialogContent, DialogTitle, TextField } from "@material-ui/core";
 
-import { useStyles } from "../styles/style";
+import { makeStyles } from "@material-ui/core/styles";
 import EditIcon from "@material-ui/icons/Edit";
 import CloseIcon from "@material-ui/icons/Close";
 
-const EditModal = ({ service }) => {
+const useStyles = makeStyles((theme) => ({
+  formCenterBox: {
+    display: "flex",
+    flexDirection: "column",
+    height: "40%",
+    margin: "20px 20px",
+  },
+  inputContainer: {
+    marginBottom: "20px",
+  },
+  dialogHeader: {
+    display: "flex",
+    justifyContent: "space-between",
+  },
+  buttonCreate: {
+    display: "flex",
+    justifyContent: "flex-end",
+    marginRight: "50px",
+    marginBottom: "20px",
+  },
+}));
+const EditModal = ({ id }) => {
   const classes = useStyles();
   const [modalOpen, setModalOpen] = useState(false);
   const [text, setText] = useState("");
@@ -44,7 +54,7 @@ const EditModal = ({ service }) => {
 
     const res = await axios
       .put(
-        `https://dummyapi.io/data/v1/post/${service.id}`,
+        `https://dummyapi.io/data/v1/post/${id}`,
         {
           text,
           image,
@@ -60,9 +70,7 @@ const EditModal = ({ service }) => {
           console.log(error);
         }
       );
-      window.location.reload(true);
-
-
+    window.location.reload(true);
   };
 
   return (

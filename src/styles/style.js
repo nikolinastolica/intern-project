@@ -16,8 +16,6 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     margin: "336px 76px 112px 76px",
-    // marginTop: "336px",
-    //marginBottom: "112px",
     backgroundColor: "#FFFFFF",
   },
   cardcontainer: {
@@ -61,7 +59,8 @@ const useStyles = makeStyles((theme) => ({
   formCenterBox: {
     display: "flex",
     flexDirection: "column",
-    height: "30%",
+    height: "40%",
+    margin:"20px 20px"
   },
   inputContainer: {
     marginBottom: "20px",
@@ -86,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "10% auto 20% auto",
   },
   homeContainer: {
-    margin: "10% auto 20% auto",
+    margin: "5% auto 20% auto",
   },
   title: {
     color: "#800080",

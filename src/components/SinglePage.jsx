@@ -13,8 +13,6 @@ import {
   Grid,
   CardContent,
   Typography,
-  Button,
-  CardActions,
   IconButton,
   CardActionArea,
   CircularProgress,
@@ -63,7 +61,7 @@ export default function SinglePage() {
                     {posts.owner.firstName} {posts.owner.lastName}
                   </Typography>
                 }
-                action={<EditModal service={posts} />}
+                action={<EditModal id={posts.id} />}
               />
               <CardContent>
                 <CardMedia className={classes.media} image={posts.image} />
