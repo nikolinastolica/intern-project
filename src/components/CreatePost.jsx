@@ -5,6 +5,7 @@ import { Box, Button, Dialog, DialogContent, DialogTitle, TextField } from "@mat
 
 import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
+
 const useStyles = makeStyles((theme) => ({
   formCenterBox: {
     display: "flex",
@@ -74,7 +75,7 @@ const CreatePost = () => {
 
   return (
     <Box>
-      <Button variant="outlined" color="purple" className={classes.buttonStyle} onClick={handleClickOpen}>
+      <Button variant="outlined"  className={classes.buttonStyle} onClick={handleClickOpen}>
         Create Post
       </Button>
       <Dialog

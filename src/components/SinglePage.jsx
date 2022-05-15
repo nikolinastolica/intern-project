@@ -72,9 +72,8 @@ export default function SinglePage() {
                     {posts.likes}
                   </Box>
                   <Box className={classes.tagContainer}>
-                  {posts.tags.length>0 && posts.tags.map((tag) => (
-                          <Box className={classes.tag}>#{tag} </Box>
-                        ))}
+                    {posts.tags.length > 0 &&
+                      posts.tags.map((tag) => <Box className={classes.tag}>#{tag.trim()} </Box>)}
                   </Box>
                 </Box>
                 <Typography>{posts.text}</Typography>

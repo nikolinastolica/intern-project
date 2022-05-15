@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   media: {
+    height: 0,
     paddingTop: "80%",
   },
   container: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     paddingTop: "10%",
+   
   },
   paginationWrap: {
     display: "flex",
@@ -60,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     height: "40%",
-    margin:"20px 20px"
+    margin: "20px 20px",
   },
   inputContainer: {
     marginBottom: "20px",

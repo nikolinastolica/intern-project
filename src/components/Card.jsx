@@ -77,42 +77,42 @@ export default function PostCard() {
       {!loader && (
         <>
           <Grid container>
-            {total>1 && posts.map((post) => (
-              <Grid item xs={12} md={4} lg={4} className={classes.cardcontainer}>
-                <Card className={classes.maincard}>
-                  <CardHeader
-                    avatar={<Avatar src={post.owner.picture} />}
-                    title={
-                      <Typography>
-                        {post.owner.firstName} {post.owner.lastName}
-                      </Typography>
-                    }
-                    action={
-                      <IconButton onClick={() => deleteHandler(post.id)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    }
-                  />
-                  <CardContent>
-                    <CardActionArea href={"/profile/" + post.id}>
-                      <CardMedia className={classes.media} image={post.image} />
-                    </CardActionArea>
+            {total > 0 &&
+              posts.map((post) => (
+                <Grid item xs={12} md={4} lg={4} className={classes.cardcontainer}>
+                  <Card className={classes.maincard}>
+                    <CardHeader
+                      avatar={<Avatar src={post.owner.picture} />}
+                      title={
+                        <Typography>
+                          {post.owner.firstName} {post.owner.lastName}
+                        </Typography>
+                      }
+                      action={
+                        <IconButton onClick={() => deleteHandler(post.id)}>
+                          <DeleteIcon />
+                        </IconButton>
+                      }
+                    />
+                    <CardContent>
+                      <CardActionArea href={"/profile/" + post.id}>
+                        <CardMedia className={classes.media} image={post.image} />
+                      </CardActionArea>
 
-                    <Box className={classes.commentContainer}>
-                      <Box className={classes.favIcon}>
-                        <FavoriteIcon />
-                        {post.likes}
+                      <Box className={classes.commentContainer}>
+                        <Box className={classes.favIcon}>
+                          <FavoriteIcon />
+                          {post.likes}
+                        </Box>
+                        <Box className={classes.tagContainer}>
+                          {post.tags.length > 0 &&
+                            post.tags.map((tag) => <Box className={classes.tag}>#{(tag.trim())} </Box>)}
+                        </Box>
                       </Box>
-                      <Box className={classes.tagContainer}>
-                        {post.tags.length>0 && post.tags.map((tag) => (
-                          <Box className={classes.tag}>#{tag} </Box>
-                        ))}
-                      </Box>
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
           </Grid>
         </>
       )}
