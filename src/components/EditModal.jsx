@@ -49,8 +49,11 @@ const EditModal = ({ id }) => {
 
   const editHandler = async () => {
     setModalOpen(false);
-
-    var tagsArray = tagValue.split(",");
+    if (tagValue.length === 0) {
+      var tagsArray = [];
+    } else {
+       var tagsArray = tagValue.split(",");
+    }
 
     const res = await axios
       .put(

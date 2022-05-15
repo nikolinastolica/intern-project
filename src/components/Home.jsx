@@ -24,7 +24,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import EditIcon from "@material-ui/icons/Edit";
 
-export default function PostCard() {
+export default function Home() {
   const classes = useStyles();
   const [posts, setPosts] = useState([]);
   const [total, setTotal] = useState();

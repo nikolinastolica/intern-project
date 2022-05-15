@@ -49,7 +49,11 @@ const CreatePost = () => {
   };
   const createHandler = async () => {
     setModalOpen(false);
-    var tagsArray = tagValue.split(",");
+    if (tagValue.length === 0) {
+      var tagsArray = [];
+    } else {
+      var tagsArray = tagValue.split(",");
+    }
 
     const data = {
       text: text,
@@ -69,13 +73,12 @@ const CreatePost = () => {
     );
     console.log("Great", data);
     setModalOpen(false);
-    //Body is not valid, reload disabled for testing
     //window.location.reload(true);
   };
 
   return (
     <Box>
-      <Button variant="outlined"  className={classes.buttonStyle} onClick={handleClickOpen}>
+      <Button variant="outlined" className={classes.buttonStyle} onClick={handleClickOpen}>
         Create Post
       </Button>
       <Dialog
