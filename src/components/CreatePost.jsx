@@ -39,6 +39,7 @@ const CreatePost = () => {
   const [image, setImage] = useState([]);
   const [likes, setLikes] = useState(0);
   const [tagValue, setTagValue] = useState([]);
+  const [publishDate, setPublishDate] = useState([]);
 
   const handleClickOpen = () => {
     setModalOpen(true);
@@ -61,6 +62,7 @@ const CreatePost = () => {
       likes: Math.floor(Math.random() * 10),
       tags: tagsArray,
       owner: owner,
+      //publishDate: publishDate,
     };
 
     const res = await axios.post(`https://dummyapi.io/data/v1/post/create`, { data }, { headers }).then(
@@ -71,7 +73,7 @@ const CreatePost = () => {
         console.log(error);
       }
     );
-    console.log("Great", data);
+    console.log("Post", data);
     setModalOpen(false);
     //window.location.reload(true);
   };
@@ -137,6 +139,7 @@ const CreatePost = () => {
               type="date"
               defaultValue=""
               variant="outlined"
+              onChange={(e) => setPublishDate(e.target.value)}
             />
             <Button variant="outlined" onClick={() => createHandler()}>
               Submit
