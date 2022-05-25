@@ -1,28 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useStyles } from "../styles/style";
 import axios from "axios";
+import PostCard from "./PostCard";
 import CreatePost from "./CreatePost";
 
-import {
-  Card,
-  CardHeader,
-  CardMedia,
-  Grid,
-  Box,
-  CardContent,
-  Typography,
-  Button,
-  CardActions,
-  IconButton,
-  CardActionArea,
-  CircularProgress,
-  Container,
-  Avatar,
-} from "@material-ui/core";
+import { Box, Typography, CircularProgress, Container } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
-import DeleteIcon from "@material-ui/icons/Delete";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import EditIcon from "@material-ui/icons/Edit";
 
 export default function Home() {
   const classes = useStyles();
@@ -53,17 +36,6 @@ export default function Home() {
     console.log("total", total);
   }, [page]);
 
-  const deleteHandler = async (id) => {
-    const response = await axios.delete(`https://dummyapi.io/data/v1/post/${id}`, { headers }).then(
-      (response) => {
-        console.log("Delete successful");
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    window.location.reload(true);
-  };
   return (
     <Container className={classes.homeContainer}>
       <Typography variant="h1" className={classes.title}>
@@ -74,55 +46,14 @@ export default function Home() {
       </Box>
 
       {loader && <CircularProgress className={classes.loader} />}
-      {!loader && (
-        <>
-          <Grid container>
-            {total > 0 &&
-              posts.map((post) => (
-                <Grid item xs={12} md={4} lg={4} className={classes.cardcontainer}>
-                  <Card className={classes.maincard}>
-                    <CardHeader
-                      avatar={<Avatar src={post.owner.picture} />}
-                      title={
-                        <Typography>
-                          {post.owner.firstName} {post.owner.lastName}
-                        </Typography>
-                      }
-                      action={
-                        <IconButton onClick={() => deleteHandler(post.id)}>
-                          <DeleteIcon />
-                        </IconButton>
-                      }
-                    />
-                    <CardContent>
-                      <CardActionArea href={"/profile/" + post.id}>
-                        <CardMedia className={classes.media} image={post.image} />
-                      </CardActionArea>
-
-                      <Box className={classes.commentContainer}>
-                        <Box className={classes.favIcon}>
-                          <FavoriteIcon />
-                          {post.likes}
-                        </Box>
-                        <Box className={classes.tagContainer}>
-                          {post.tags.length > 0 &&
-                            post.tags.map((tag) => <Box className={classes.tag}>#{(tag.trim())} </Box>)}
-                        </Box>
-                      </Box>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-          </Grid>
-        </>
-      )}
+      {!loader && <PostCard posts={posts} total={total} />}
       <Box className={classes.pagination}>
         <Pagination
           variant="outlined"
           shape="rounded"
           showFirstButton
           showLastButton
-          count={Math.ceil(total / 21)}
+          count={Math.floor(total / 21)}
           page={page}
           onChange={handleChangePage}
         />
